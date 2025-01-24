@@ -1,3 +1,5 @@
+// error handling later
+
 import { Request, Response } from "express"
 
 import { postRepo } from "../repository/post.repo"
