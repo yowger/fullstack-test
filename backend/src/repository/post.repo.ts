@@ -25,12 +25,27 @@ async function getPost(postId: string) {
     return post
 }
 
-async function getPostByList(query = {}, page = 1, limit = 10) {
+interface PostQuery {
+    // status?: string
+    title?: string
+    // startDate?: string
+    // endDate?: string
+    // articleLink?: string
+    // videoLink?: string
+}
+
+async function getPostByList(query: PostQuery = {}, page = 1, limit = 10) {
     const skip = (page - 1) * limit
 
+    const filters: any = {}
+
+    if (query.title) {
+        filters.title = { $regex: query.title, $options: "i" }
+    }
+
     const [posts, totalCount] = await Promise.all([
-        Post.find(query).sort({ createdAt: -1 }).skip(skip).limit(limit),
-        Post.countDocuments(query),
+        Post.find(filters).sort({ createdAt: -1 }).skip(skip).limit(limit),
+        Post.countDocuments(filters),
     ])
 
     const totalPages = Math.ceil(totalCount / limit)

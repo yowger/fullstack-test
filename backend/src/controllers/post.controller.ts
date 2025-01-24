@@ -16,11 +16,32 @@ async function createPostHandler(req: Request, res: Response) {
 }
 
 async function getPostHandler(req: Request, res: Response) {
-    res.status(201).json("post")
+    const { id } = req.params
+
+    const post = await postRepo.getPost(id)
+    // if (!post) {
+    //     return res.status(404).json({ error: "Post not found" })
+    // }
+
+    res.status(200).json(post)
 }
 
 async function getPostsByListHandler(req: Request, res: Response) {
-    res.status(201).json("post")
+    const { page = 1, limit = 10, ...filters } = req.query
+    console.log("🚀 ~ getPostsByListHandler ~ filters:", filters)
+
+    const { posts, metadata } = await postRepo.getPostByList(
+        filters,
+        Number(page),
+        Number(limit)
+    )
+    console.log("🚀 ~ getPostsByListHandler ~ posts:", posts)
+    console.log("🚀 ~ getPostsByListHandler ~ metadata:", metadata)
+
+    res.status(200).json({
+        data: posts,
+        metadata,
+    })
 }
 
 export const postHandlers = {

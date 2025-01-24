@@ -30,7 +30,7 @@ POST {{baseUrl}}:{{port}}/{{post}}
 Content-Type: application/json
 
 {
-    "title": "New Post Title",
+    "title": "Dog",
     "status": "success",
     "articleLink": "https://example.com/article",
     "videoLink": "https://example.com/video"
@@ -41,3 +41,7 @@ GET {{baseUrl}}:{{port}}/{{post}}/1
 
 ### Get posts by list with pagination
 GET {{baseUrl}}:{{port}}/{{post}}?page=1&limit=10
+
+### Get posts by list with pagination and filters
+GET {{baseUrl}}:{{port}}/{{post}}?page=1&limit=10&title=Dog
+
