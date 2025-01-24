@@ -5,6 +5,7 @@ async function createPost(data: {
     status: "failed" | "success" | "upcoming"
     articleLink?: string
     videoLink?: string
+    description?: string
 }) {
     const post = new Post(data)
     await post.save()

@@ -5,13 +5,14 @@ import { Request, Response } from "express"
 import { postRepo } from "../repository/post.repo"
 
 async function createPostHandler(req: Request, res: Response) {
-    const { title, status, articleLink, videoLink } = req.body
+    const { title, description, status, articleLink, videoLink } = req.body
 
     const newPost = await postRepo.createPost({
         title,
         status,
         articleLink,
         videoLink,
+        description,
     })
 
     res.status(201).json(newPost)
