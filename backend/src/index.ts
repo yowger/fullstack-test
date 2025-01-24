@@ -1,20 +1,24 @@
-import dotenv from "dotenv"
-dotenv.config()
+
 import express from "express"
 import morgan from "morgan"
 
+import config from "./config/config"
 import postRoute from "./routes/post.routes"
+import connectMongo from "./utils/connectMongo"
+console.log("🚀 ~ config:", config)
+
+connectMongo(config.DB_URI)
 
 const app = express()
 
 app.use(morgan("combined"))
 app.use(express.json())
 
-const PORT = 3000
-
 app.use("/post", postRoute)
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+app.listen(config.PORT, () =>
+    console.log(`Server running on port ${config.PORT}`)
+)
 
 process
     .on("unhandledRejection", (error, p) => {
