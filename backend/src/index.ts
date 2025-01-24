@@ -3,12 +3,16 @@ dotenv.config()
 import express from "express"
 import morgan from "morgan"
 
+import postRoute from "./routes/post.routes"
+
 const app = express()
 
 app.use(morgan("combined"))
 app.use(express.json())
 
 const PORT = 3000
+
+app.use("/post", postRoute)
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
 

@@ -1,0 +1,7 @@
+@baseUrl = http://localhost
+@port = 3000
+
+@post = post
+
+### TEST
+GET {{baseUrl}}:{{port}}/{{ post }}
