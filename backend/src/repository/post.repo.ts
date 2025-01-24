@@ -1,5 +1,17 @@
 import Post from "../models/post.model"
 
+async function createPost(data: {
+    title: string
+    status: "failed" | "success" | "upcoming"
+    articleLink?: string
+    videoLink?: string
+}) {
+    const post = new Post(data)
+    await post.save()
+
+    return post
+}
+
 async function getPost(postId: string) {
     if (!postId) {
         throw new Error("Post ID is required")
@@ -35,6 +47,7 @@ async function getPostByList(query = {}, page = 1, limit = 10) {
 }
 
 export const postRepo = {
+    createPost,
     getPost,
     getPostByList,
 }

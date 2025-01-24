@@ -3,8 +3,41 @@
 
 @post = post
 
-### Get post
-GET {{baseUrl}}:{{port}}/{{ post }}/1
+### Create post 1
+POST {{baseUrl}}:{{port}}/{{post}}
+Content-Type: application/json
 
-### Get post by list
-GET {{baseUrl}}:{{port}}/{{ post }}/
+{
+    "title": "New Post Title",
+    "status": "success",
+    "articleLink": "https://example.com/article",
+    "videoLink": "https://example.com/video"
+}
+
+### Create post 2
+POST {{baseUrl}}:{{port}}/{{post}}
+Content-Type: application/json
+
+{
+    "title": "New Post Title",
+    "status": "success",
+    "articleLink": "https://example.com/article",
+    "videoLink": "https://example.com/video"
+}
+
+### Create post 3
+POST {{baseUrl}}:{{port}}/{{post}}
+Content-Type: application/json
+
+{
+    "title": "New Post Title",
+    "status": "success",
+    "articleLink": "https://example.com/article",
+    "videoLink": "https://example.com/video"
+}
+
+### Get a single post by ID
+GET {{baseUrl}}:{{port}}/{{post}}/1
+
+### Get posts by list with pagination
+GET {{baseUrl}}:{{port}}/{{post}}?page=1&limit=10
