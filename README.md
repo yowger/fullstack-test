@@ -12,7 +12,7 @@ https://github.com/user-attachments/assets/95d17054-74bd-4d79-b76f-1acf2dc71728
 ## tech used
 ### front end: 
 - tanstack query -> for async query management and its good for pagination/infinite query
-- react-infinite-scroll-component -> for infinite scrolling, i used this than making an observer hook cause observer hooks cause issues
+- react-infinite-scroll-component -> for infinite scrolling, i used this than making an observer hook cause observer hooks cause issues, also it has virtualization.
 - axios -> for fetching
 - tailwind -> for styling 
 
