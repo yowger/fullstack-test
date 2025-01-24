@@ -1,9 +1,10 @@
 import express from "express"
 
-import { getPostHandler } from "../controllers/post.controller"
+import { postHandlers } from "../controllers/post.controller"
 
 const router = express.Router()
 
-router.get("/", getPostHandler)
+router.get("/:id", postHandlers.getPostHandler)
+router.get("/", postHandlers.getPostsByListHandler)
 
 export default router

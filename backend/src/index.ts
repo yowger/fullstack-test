@@ -1,20 +1,25 @@
-
+import compression from "compression"
+import cors from 'cors';
 import express from "express"
 import morgan from "morgan"
 
 import config from "./config/config"
 import postRoute from "./routes/post.routes"
 import connectMongo from "./utils/connectMongo"
-console.log("🚀 ~ config:", config)
 
 connectMongo(config.DB_URI)
 
 const app = express()
 
+app.use(cors())
 app.use(morgan("combined"))
 app.use(express.json())
+app.use(compression())
 
 app.use("/post", postRoute)
+app.use("*", (req, res) => {
+    res.status(404).json({ message: "Route not found" })
+})
 
 app.listen(config.PORT, () =>
     console.log(`Server running on port ${config.PORT}`)

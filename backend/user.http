@@ -3,5 +3,8 @@
 
 @post = post
 
-### TEST
-GET {{baseUrl}}:{{port}}/{{ post }}
+### Get post
+GET {{baseUrl}}:{{port}}/{{ post }}/1
+
+### Get post by list
+GET {{baseUrl}}:{{port}}/{{ post }}/
